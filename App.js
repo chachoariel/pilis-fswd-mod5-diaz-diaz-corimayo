@@ -1,28 +1,23 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { ProfileScreen } from './screens/profile/ProfileScreen'
-import { HomeScreen } from './screens/home/HomeScreen'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { MainStackScreen } from './src/screens/event-list/MainStackScreen'
+import { EventDetailScreen } from './src/screens/event-detail/EventDetailScreen'
 
-const Tab = createBottomTabNavigator()
+const EventListStack = createNativeStackNavigator()
 
 export default function App () {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name='Home' component={HomeScreen} />
-        <Tab.Screen name='Profile' component={ProfileScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <EventListStack.Navigator screenOptions={{ headerShown: false }}>
+          {/** //Pantallas con tab */}
+          <EventListStack.Screen name='Main' component={MainStackScreen} />
+          {/** //Pantallas sin tab */}
+          <EventListStack.Screen name='LocationDetail' component={EventDetailScreen} />
+        </EventListStack.Navigator>
+      </NavigationContainer>
+      <StatusBar style='auto' />
+    </>
   )
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center'
-//   }
-// })

@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS, SPACING } from '../../utils/theme'
 import { HomeScreen } from '../home/HomeScreen'
-import { ProfileScreen } from '../profile/ProfileScreen'
+import { FormUserRegistration } from '../signup/UserRegister'
 import { EventListScreen } from './EventListScreen'
 
 const Tab = createBottomTabNavigator()
@@ -31,7 +31,7 @@ export const MainStackScreen = () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name='Home' options={{ title: 'Inicio' }} component={HomeScreen} />
       <Tab.Screen name='Search' options={{ title: 'Explorar' }} component={EventListScreen} />
-      <Tab.Screen name='Profile' options={{ title: 'Perfil' }} component={ProfileScreen} />
+      <Tab.Screen name='Profile' options={{ title: 'Perfil' }} component={FormUserRegistration} />
     </Tab.Navigator>
   )
 }

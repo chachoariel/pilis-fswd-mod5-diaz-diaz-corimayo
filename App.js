@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { MainStackScreen } from './src/screens/event-list/MainStackScreen'
 import { EventDetailScreen } from './src/screens/event-detail/EventDetailScreen'
+import { EventDetailWebScreen } from './src/screens/event-detail-web/EventDetailWebScreen'
 
 const EventListStack = createNativeStackNavigator()
 
@@ -14,7 +15,8 @@ export default function App () {
           {/** //Pantallas con tab */}
           <EventListStack.Screen name='Main' component={MainStackScreen} />
           {/** //Pantallas sin tab */}
-          <EventListStack.Screen name='LocationDetail' component={EventDetailScreen} />
+          <EventListStack.Screen name='EventDetail' component={EventDetailScreen} />
+          <EventListStack.Screen name='EventDetailWeb' component={EventDetailWebScreen} />
         </EventListStack.Navigator>
       </NavigationContainer>
       <StatusBar style='auto' />

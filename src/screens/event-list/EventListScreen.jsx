@@ -9,15 +9,17 @@ export const EventListScreen = ({ navigation }) => {
   const handleSearch = (query) => {
     setSearchQuery(query)
   }
-  const filteredEvents = data.filter(location => (
-    location.title.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())
+  const filteredEvents = data.filter(event => (
+    event.title.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())
   ))
   const event = ({ item }) => (
     <Pressable onPress={() => navigation.navigate('EventDetail', { item })}>
       <View style={styles.itemContainer}>
         <Image source={item.images[0]} style={styles.itemImage} />
+        <View style={styles.containerDate}>
+          <Text style={styles.itemDate}>{item.date}</Text>
+        </View>
         <Text style={styles.itemTitle}>{item.title}</Text>
-        <Text style={styles.itemPrice}>{item.price}</Text>
       </View>
     </Pressable>
   )

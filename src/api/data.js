@@ -39,7 +39,7 @@ export const data = [
     id: '3',
     title: 'Gran Peña Día del Trabajador',
     location: 'Finca La Herminia - RP. N° 35 km 3',
-    data: '30 de Abril',
+    date: '30 de Abril',
     hour: '19 hs',
     description: 'Alejandro Araujo, integrante de los Changos de Nieva y uno de los organizadores de la Gran Peña “Día del Trabajador” en su visita a Radio Universidad invitó a este evento que se realizará el lunes 30 de abril a partir de las 22 horas en Finca la Herminia. Parte de lo recaudado será entregado el 25 de mayo a la Escuela  44 “Jose Ignacio Gorriti , escuela Albergue de León.',
     images: [
@@ -57,7 +57,7 @@ export const data = [
     id: '4',
     title: 'After Office Experiencia de Cliente',
     location: 'MINTA Point 1079 Salta San Salvador de Jujuy',
-    data: '20 de Abril',
+    date: '20 de Abril',
     hour: '19:30 a 20:30',
     description: '¡Primer After Office del año! Nos enfocamos en la Experiencia de Cliente (CX), la clave para destacar en un mercado cada vez más competitivo. La CX se trata de crear una experiencia única y satisfactoria para el cliente, que va más allá de simplemente vender un producto o servicio',
     images: [
@@ -75,7 +75,7 @@ export const data = [
     id: '5',
     title: 'Fiesta Nacional de los Estudiantes',
     location: 'San Salvador de Jujuy',
-    date: '20 al 30 de Septiembre',
+    date: 'Del 20 al 30 de Septiembre',
     hour: '19 hs',
     description: 'La Fiesta Nacional de los Estudiantes (FNE) es una festividad originaria de San Salvador de Jujuy que se celebra con carácter anual en distintos puntos de la Provincia de Jujuy, Argentina. La Fiesta tiene lugar durante la Semana del Estudiante argentina y da la bienvenida a la primavera',
     images: [

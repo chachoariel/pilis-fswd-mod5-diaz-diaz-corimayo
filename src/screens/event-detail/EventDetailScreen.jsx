@@ -18,7 +18,7 @@ export const EventDetailScreen = ({ route }) => {
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.location}>{item.location}</Text>
+        <Text style={styles.eventName}>{item.location}</Text>
         <Link style={styles.webButton} to={{ screen: 'EventDetailWeb', params: { url: item.url } }}>
           Ir a la web
         </Link>

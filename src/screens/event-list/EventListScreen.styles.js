@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, StatusBar } from 'react-native'
-import { COLORS } from '../../utils/theme'
+import { COLORS, FONT_SIZE } from '../../utils/theme'
 
 export const styles = StyleSheet.create({
   container: {
@@ -31,11 +31,24 @@ export const styles = StyleSheet.create({
   itemTitle: {
     fontWeight: 'bold',
     marginTop: 10,
-    marginHorizontal: 10
-  },
-  itemPrice: {
-    marginTop: 5,
     marginBottom: 10,
-    marginHorizontal: 10
+    marginHorizontal: 10,
+    textAlign: 'center',
+    fontSize: FONT_SIZE.md
+  },
+  containerDate: {
+    marginTop: -15,
+    backgroundColor: COLORS.primary,
+    marginHorizontal: 20,
+    borderRadius: 20
+  },
+  itemDate: {
+    marginTop: 5,
+    marginBottom: 5,
+    marginHorizontal: 10,
+    textAlign: 'center',
+    color: COLORS.white,
+    fontWeight: 'bold',
+    fontSize: FONT_SIZE.md
   }
 })

@@ -14,7 +14,12 @@ export const EventDetailScreen = ({ route }) => {
       <View style={styles.imageContainer}>
         <ScrollView horizontal pagingEnabled style={styles.imageContainer}>
           {item.images.map((image, idx) => (
-            <Image key={idx} source={image} style={styles.image} resizeMode='cover' />
+            <Image
+              key={idx}
+              source={{ uri: `https://drive.google.com/uc?id=${image}` }}
+              style={styles.image}
+              resizeMode='cover'
+            />
           ))}
         </ScrollView>
       </View>

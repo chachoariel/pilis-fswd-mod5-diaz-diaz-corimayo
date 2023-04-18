@@ -3,8 +3,10 @@ import { Text, View, } from 'react-native'
 import { useForm, Controller} from "react-hook-form";
 import { TouchableOpacity,TextInput,SafeAreaView  } from 'react-native';
 import { styles } from './userRegister.styles'
-import { useNavigation } from '@react-navigation/native'
+/*import { useNavigation } from '@react-navigation/native'*/
 import { UserContext } from '../../contexts/UserContext'
+import { getUsers } from '../../api/user.service';
+
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
@@ -18,21 +20,10 @@ const UserDataRegister = async ({userName, userPassword}) => {
   }
 }
 
-export const getUsers = async () => {
-  try {
-    const response = await fetch(`https://643955704660f26eb1b055ff.mockapi.io/api/v1/users`)
-    const text = await response.text()
-    console.log(text)
-    return JSON.parse(text)
-  } catch {
-    throw new Error('could not fetch users')
-  }
-}
-
-
 export const FormUserRegistration = ()=>{
 const { setCurrentUser } = useContext(UserContext)
-const navigation = useNavigation()
+const { currentUser } = useContext(UserContext)
+/*const navigation = useNavigation()*/
 const { control, handleSubmit, formState: { errors }} = useForm({
   defaultValues: {
       userName: '',
@@ -44,7 +35,7 @@ const { control, handleSubmit, formState: { errors }} = useForm({
 
 const [userExists, setUserExists] = useState(false);
 
-const onLogin = () => { navigation.navigate('Login') }
+/* const onLogin = () => { navigation.navigate('Login') } */
 
 const onSubmit = ({userName,userPassword}) => {
   getUsers()
@@ -57,11 +48,11 @@ const onSubmit = ({userName,userPassword}) => {
       //--------------------------
       if (userName !== user.username || userPassword !== user.password )
       {
-        navigation.navigate('Reg')
-        setCurrentUser({userName,userPassword})
         
-        
-        console.log()
+        setCurrentUser({userName, userPassword})
+        console.log(currentUser)
+        UserDataRegister({userName, userPassword})
+        console.log(user.username)
       }else{
         setUserExists(true);
       }
@@ -98,6 +89,8 @@ return (
             }}
             render={({ field: { onChange, onBlur, value } }) => (
         <TextInput
+    secureTextEntry={true}
+    autoCapitalize="none"
     placeholder="Contraseña"
     onBlur={onBlur}
     onChangeText={onChange}
@@ -143,13 +136,13 @@ return (
     )}
         name="userEmail"
     />
-    {errors.userEmail && <Text>Email nulo o no existe</Text>}
+    {errors.userEmail && <Text>Email vacio o no existe</Text>}
       <TouchableOpacity onPress={handleSubmit(onSubmit)}>
         <Text>
           Registrar
         </Text>
       </TouchableOpacity>
-    <TouchableOpacity onPress={handleSubmit(onLogin)}>
+    <TouchableOpacity >
       <Text>
         Logearse
       </Text>

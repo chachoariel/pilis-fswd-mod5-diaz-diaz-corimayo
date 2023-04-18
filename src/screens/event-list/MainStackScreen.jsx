@@ -6,7 +6,7 @@ import { COLORS, SPACING } from '../../utils/theme'
 import { HomeScreen } from '../home/HomeScreen'
 import { FormUserRegistration } from '../signup/UserRegister'
 import { EventListScreen } from './EventListScreen'
-
+import { LoginUser } from '../login/LoginScreen'
 const Tab = createBottomTabNavigator()
 const TAB_ICON = {
   Home: 'home',
@@ -31,7 +31,8 @@ export const MainStackScreen = () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name='Home' options={{ title: 'Inicio' }} component={HomeScreen} />
       <Tab.Screen name='Search' options={{ title: 'Explorar' }} component={EventListScreen} />
-      <Tab.Screen name='Profile' options={{ title: 'Perfil' }} component={FormUserRegistration} />
+      <Tab.Screen name='Reg' options={{ title: 'Perfil' }} component={FormUserRegistration} />
+      <Tab.Screen name='Login' option={{title: 'Login'}} component={LoginUser}/>
     </Tab.Navigator>
   )
 }

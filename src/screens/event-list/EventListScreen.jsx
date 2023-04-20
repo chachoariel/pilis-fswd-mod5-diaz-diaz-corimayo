@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, SafeAreaView, FlatList, Pressable, Image } from 'react-native'
-import { styles } from './EventListScreen.styles'
-// import { data } from '../../api/data'
-import { SearchBar } from '../../components/SearchBar'
+import { SafeAreaView, FlatList } from 'react-native'
+
+import { SearchBar, EventCard } from '../../components'
 import { getEventList } from '../../api/event.service'
+import { styles } from './EventListScreen.styles'
 
 export const EventListScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -20,23 +20,18 @@ export const EventListScreen = ({ navigation }) => {
     })
       .catch(err => console.log(err))
   }, [])
-  const event = ({ item }) => (
-    <Pressable onPress={() => navigation.navigate('EventDetail', { item })}>
-      <View style={styles.itemContainer}>
-        <Image source={{ uri: `https://drive.google.com/uc?id=${item.images[0]}` }} style={styles.itemImage} />
-        <View style={styles.containerDate}>
-          <Text style={styles.itemDate}>{item.date}</Text>
-        </View>
-        <Text style={styles.itemTitle}>{item.title}</Text>
-      </View>
-    </Pressable>
+  const renderItem = ({ item }) => (
+    <EventCard
+      event={item}
+      onPress={() => navigation.navigate('EventDetail', { item })}
+    />
   )
   return (
     <SafeAreaView style={styles.container}>
       <SearchBar handleSearch={handleSearch} searchQuery={searchQuery} />
       <FlatList
         data={filteredEvents}
-        renderItem={event}
+        renderItem={renderItem}
         keyExtractor={item => item.id}
         style={styles.itemList}
       />

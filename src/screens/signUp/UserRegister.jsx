@@ -9,10 +9,12 @@ import { getUsers } from '../../api/user.service';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 
-const UserDataRegister = async ({ userName, userPassword }) => {
+const UserDataRegister = async ({ username, password, userAge, userEmail }) => {
     try {
-        await AsyncStorage.setItem('usernameSave', userName);
-        await AsyncStorage.setItem('passwordSave', userPassword);
+        await AsyncStorage.setItem('usernameSave', username);
+        await AsyncStorage.setItem('passwordSave', password);
+        await AsyncStorage.setItem('userAge', userAge);
+        await AsyncStorage.setItem('userEmail', userEmail);
     } catch (error) {
         console.log(error);
     }
@@ -21,12 +23,11 @@ const UserDataRegister = async ({ userName, userPassword }) => {
 
 export const FormUserRegistration = () => {
     const { setCurrentUser } = useContext(UserContext)
-    const { currentUser } = useContext(UserContext)
     /*const navigation = useNavigation()*/
     const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
-            userName: '',
-            userPassword: '',
+            username: '',
+            password: '',
             userAge: '',
             userEmail: '',
         }
@@ -36,7 +37,7 @@ export const FormUserRegistration = () => {
 
     /* const onLogin = () => { navigation.navigate('Login') } */
 
-    const onSubmit = ({ userName, userPassword }) => {
+    const onSubmit = ({ username, password, userAge, userEmail }) => {
         getUsers()
             .then(users => {
                 //comprobar si existe un usuario
@@ -45,11 +46,12 @@ export const FormUserRegistration = () => {
 
                 console.log(user)
                 //--------------------------
-                if (userName !== user.username || userPassword !== user.password) {
+                if (username !== user.username || password !== user.password) {
 
-                    setCurrentUser({ userName, userPassword })
-                    console.log(currentUser)
-                    UserDataRegister({ userName, userPassword })
+                    setCurrentUser({ username, password })
+                    console.log("no valido")
+                    console.log({ username, password })
+                    UserDataRegister({ username, password, userAge, userEmail })
                     console.log(user.username)
                 } else {
                     setUserExists(true);
@@ -75,9 +77,9 @@ export const FormUserRegistration = () => {
                         value={value}
                     />
                 )}
-                name="userName"
+                name="username"
             />
-            {errors.userName && <Text>Usuario invalido</Text>}
+            {errors.username && <Text>Usuario invalido</Text>}
 
 
 
@@ -98,9 +100,9 @@ export const FormUserRegistration = () => {
                         value={value}
                     />
                 )}
-                name="userPassword"
+                name="password"
             />
-            {errors.userPassword && <Text>Contraseña invalida</Text>}
+            {errors.password && <Text>Contraseña invalida</Text>}
 
 
             <Controller

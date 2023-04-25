@@ -1,5 +1,5 @@
 import { StyleSheet, StatusBar } from 'react-native'
-import { COLORS, FONT_SIZE } from '../../utils/theme'
+import { COLORS } from '../../utils/theme'
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,26 +13,19 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10
-  },
-  eventName: {
-    fontSize: 18,
-    color: '#666',
+    marginTop: 5,
     marginBottom: 5
   },
-  price: {
+  subTitle: {
     fontSize: 20,
-    color: '#444',
-    marginBottom: 5
+    marginBottom: 5,
+    color: 'gray'
   },
-  ratingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  rating: {
-    marginLeft: 8,
-    color: COLORS.text,
-    fontSize: FONT_SIZE.md
+  textInfo: {
+    fontSize: 20,
+    color: COLORS.primary,
+    marginBottom: 5,
+    fontWeight: 'bold'
   },
   description: {
     fontSize: 18,
@@ -41,12 +34,23 @@ export const styles = StyleSheet.create({
   },
   webButton: {
     textAlign: 'center',
-    backgroundColor: COLORS.primary,
-    color: COLORS.white,
+    color: COLORS.primary,
+    fontWeight: 'bold',
+    borderWidth: 2,
+    borderColor: COLORS.grey,
     borderRadius: 20,
     paddingHorizontal: 10,
     paddingVertical: 8,
-    width: 100,
+    width: 120,
     marginTop: 10
+  },
+  containerButton: {
+    alignItems: 'center'
+  },
+  containerModal: {
+    flex: 1
+  },
+  closeButton: {
+    alignItems: 'flex-end'
   }
 })

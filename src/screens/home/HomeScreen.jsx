@@ -5,9 +5,11 @@ import { styles } from './HomeScreen.styles'
 export const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>
-        Eventos de la Provincia de Jujuy!!!
-      </Text>
+      <ImageBackground style={styles.bgImage} source={require('../../../assets/images/main.jpg')}>
+        <Text style={styles.title}>
+          Eventos de Jujuy!!!
+        </Text>
+      </ImageBackground>
     </SafeAreaView>
   )
 }

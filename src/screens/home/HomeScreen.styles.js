@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   bgImage: {
     resizeMode: 'cover',
     width: '100%',
-    height: 600,
+    height: 700,
     justifyContent: 'center',
     top: -50
   },

@@ -5,6 +5,16 @@ import { useForm, Controller } from 'react-hook-form'
 import { getUsers } from '../../api/user.service'
 import { UserContext } from '../../contexts/UserContext'
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const UserDataRegister = async ({ username, password, userAge, userEmail }) => {
+  try {
+      await AsyncStorage.setItem('usernameSave', username);
+      await AsyncStorage.setItem('passwordSave', password);
+  } catch (error) {
+      console.log(error);
+  }
+}
 
 export const LoginScreen = () => {
   const navigation = useNavigation()
@@ -22,6 +32,7 @@ export const LoginScreen = () => {
         const user = users[0]
         if (username === user.username && password === user.password) {
           setCurrentUser({ username, password })
+          UserDataRegister({ username, password })
           navigation.navigate('Home')
         }
       })

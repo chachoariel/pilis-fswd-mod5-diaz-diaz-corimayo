@@ -2,12 +2,22 @@ import React, { useContext } from 'react'
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { styles } from './UserinfoScreen.styles'
 import { UserContext } from '../../contexts/UserContext'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const clearDataUser = async () => {
+  try {
+    const keys = ['usernameSave', 'passwordSave', 'userAge', 'userEmail'];
+    await AsyncStorage.multiRemove(keys);
+  } catch (error) {
+  }
+}
 
 export const UserInfoScreen = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext)
 
   const handleLogout = () => {
     setCurrentUser(null)
+    clearDataUser()
   }
 
   return (

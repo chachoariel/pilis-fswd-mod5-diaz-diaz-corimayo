@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { View, Text, ScrollView, Modal, Button, TouchableOpacity, Pressable } from 'react-native'
+import { View, Text, ScrollView, Modal, TouchableOpacity } from 'react-native'
 import { Link } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 

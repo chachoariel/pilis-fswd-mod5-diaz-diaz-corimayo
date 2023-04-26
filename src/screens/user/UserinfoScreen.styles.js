@@ -1,5 +1,4 @@
 import { StatusBar, StyleSheet } from 'react-native'
-import { COLORS } from '../../utils/theme'
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,19 +8,20 @@ export const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#F0F0F0',
-    flexDirection: 'row',
+    flexDirection: 'column',
+    alignItems: 'center',
     padding: 20,
     borderBottomColor: '#EFEFEF',
     borderBottomWidth: 1
   },
   profileImage: {
-    width: 80,
-    height: 80,
+    width: 150,
+    height: 150,
     borderRadius: 40,
     marginRight: 5
   },
   profileInfo: {
-    justifyContent: 'center'
+    alignItems: 'center'
   },
   profileName: {
     fontSize: 24,
@@ -44,20 +44,5 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 20,
     lineHeight: 24
-  },
-  button: {
-    justifyContent: 'center',
-    backgroundColor: COLORS.primary,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-    marginTop: 15,
-    marginLeft: 10,
-    height: 50
-  },
-  buttonText: {
-    color: COLORS.white,
-    fontSize: 15,
-    fontWeight: 'bold'
   }
 })

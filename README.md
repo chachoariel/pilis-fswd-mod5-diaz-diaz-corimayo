@@ -5,9 +5,10 @@ Es una aplicación móvil para usuarios de Android. El objetivo de esta aplicaci
     1. Listado de los eventos de Jujuy.
     2. Registro de usuarios.
     3. Logueo en la aplicación(con esto la aplicación brinda acceso a la pagina del evento y permite visualizar el mapa con la ubicación del evento).
+    4. Permite compartir un evento como pdf atravez de whatsapp, drive, etc.
 
 ### Puntos a destacar de la aplicación:
-   1. Modal donde se visualiza el la ubicación del evento.
+   1. Modal donde se visualiza la ubicación del evento.
    2. Uso del componente WebView para visualizar la web del evento.
    3. Componetización de elementos que se utilizan mas de una vez en la aplicación.
    4. Uso de async-storage para dar de alta un usuario en la aplicación.
@@ -15,5 +16,5 @@ Es una aplicación móvil para usuarios de Android. El objetivo de esta aplicaci
    6. Incorporación de ActivityIndicator para indicar que la carga de un componente.
 
 ### Usuario de Prueba:
-   username: user
-   password: user
+   - username: user
+   - password: user

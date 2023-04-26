@@ -10,4 +10,5 @@ Es una aplicación movil para usuarios de Android. El objetivo de esta aplicacio
    1. Modal donde se visualiza el la ubicacion del evento.
    2. Uso del componente WebView para visualizar la web del evento.
    3. Componetizacion de elementos que se utilizan mas de una vez en la aplicacion.
-   4 Uso de AsyncStorage para dar de alta un usuario en la aplicacion.
+   4. Uso de async-storage para dar de alta un usuario en la aplicacion.
+   5. Uso de expo-print y expo-sharing para poder compartir el evento por whatsapp, correo, etc.

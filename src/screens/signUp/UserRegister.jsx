@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react'
-import { Text, TouchableOpacity, TextInput, View } from 'react-native'
+import { Text, TouchableOpacity, TextInput, View, ActivityIndicator } from 'react-native'
 import { useForm, Controller } from 'react-hook-form'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { UserContext } from '../../contexts/UserContext'
 import { getUsers } from '../../api/user.service'
 import { styles } from './userRegister.style'
+import { COLORS } from '../../utils/theme'
 
 const UserDataRegister = async ({ username, password, userAge, userEmail }) => {
   try {
@@ -20,6 +21,7 @@ const UserDataRegister = async ({ username, password, userAge, userEmail }) => {
 
 export const FormUserRegistration = () => {
   const { setCurrentUser } = useContext(UserContext)
+  const [loader, setLoader] = useState(false)
   /*  const navigation = useNavigation() */
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
@@ -34,6 +36,7 @@ export const FormUserRegistration = () => {
   /* const onLogin = () => { navigation.navigate('Login') } */
 
   const onSubmit = ({ username, password, userAge, userEmail }) => {
+    setLoader(true)
     getUsers()
       .then(users => {
         // comprobar si existe un usuario
@@ -46,6 +49,7 @@ export const FormUserRegistration = () => {
           console.log({ username, password })
           UserDataRegister({ username, password, userAge, userEmail })
           console.log(user.username)
+          setLoader(false)
         } else {
           setUserExists(true)
         }
@@ -134,6 +138,11 @@ export const FormUserRegistration = () => {
           Registrar
         </Text>
       </TouchableOpacity>
+      <ActivityIndicator
+        size='large'
+        color={COLORS.primary}
+        animating={loader}
+      />
     </View>
   )
 }

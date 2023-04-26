@@ -1,24 +1,28 @@
-import React, { useContext } from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import React, { useContext, useState } from 'react'
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { styles } from './LoginScreen.styles'
 import { useForm, Controller } from 'react-hook-form'
 import { getUsers } from '../../api/user.service'
 import { UserContext } from '../../contexts/UserContext'
 import { useNavigation } from '@react-navigation/native'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { COLORS } from '../../utils/theme'
 
 const UserDataRegister = async ({ username, password, userAge, userEmail }) => {
   try {
-      await AsyncStorage.setItem('usernameSave', username);
-      await AsyncStorage.setItem('passwordSave', password);
+    await AsyncStorage.setItem('usernameSave', username)
+    await AsyncStorage.setItem('passwordSave', password)
   } catch (error) {
-      console.log(error);
+    console.log(error)
   }
 }
 
 export const LoginScreen = () => {
   const navigation = useNavigation()
   const { setCurrentUser } = useContext(UserContext)
+  const [loader, setLoader] = useState(false)
+  const [userNotFound, setUserNotFound] = useState(false)
+
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       username: '',
@@ -27,6 +31,7 @@ export const LoginScreen = () => {
   })
 
   const handleLogin = ({ username, password }) => {
+    setLoader(true)
     getUsers()
       .then(users => {
         const user = users[0]
@@ -34,6 +39,10 @@ export const LoginScreen = () => {
           setCurrentUser({ username, password })
           UserDataRegister({ username, password })
           navigation.navigate('Home')
+          setLoader(false)
+        } else {
+          setLoader(false)
+          setUserNotFound(true)
         }
       })
       .catch(err => console.warn(err))
@@ -74,9 +83,15 @@ export const LoginScreen = () => {
         rules={{ required: 'La constraseña es requerida' }}
       />
       {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
+      {userNotFound && <Text style={styles.errorText}>Usuario no encontrado</Text>}
       <TouchableOpacity style={styles.button} onPress={handleSubmit(handleLogin)}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
+      <ActivityIndicator
+        size='large'
+        color={COLORS.primary}
+        animating={loader}
+      />
     </View>
   )
 }

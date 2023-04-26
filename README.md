@@ -12,3 +12,8 @@ Es una aplicación móvil para usuarios de Android. El objetivo de esta aplicaci
    3. Componetización de elementos que se utilizan mas de una vez en la aplicación.
    4. Uso de async-storage para dar de alta un usuario en la aplicación.
    5. Uso de expo-print y expo-sharing para poder compartir el evento por whatsapp, correo, etc.
+   6. Incorporación de ActivityIndicator para indicar que la carga de un componente.
+
+### Usuario de Prueba:
+   username: user
+   password: user

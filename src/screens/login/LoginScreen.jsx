@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { TextInput } from 'react-native-paper'
 import { styles } from './LoginScreen.styles'
 import { useForm, Controller } from 'react-hook-form'
 import { getUsers } from '../../api/user.service'
@@ -22,6 +23,7 @@ export const LoginScreen = () => {
   const { setCurrentUser } = useContext(UserContext)
   const [loader, setLoader] = useState(false)
   const [userNotFound, setUserNotFound] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
@@ -76,7 +78,14 @@ export const LoginScreen = () => {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            secureTextEntry
+            secureTextEntry={!showPassword}
+            right={
+              <TextInput.Icon
+                icon={showPassword ? 'eye-outline' : 'eye-off-outline'}
+                color='blue'
+                onPress={() => setShowPassword(!showPassword)}
+              />
+             }
           />
         )}
         name='password'
